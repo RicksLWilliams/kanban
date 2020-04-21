@@ -71,9 +71,12 @@ export default new Vuex.Store({
           dispatch('getBoards')
         })
     },
+
+  
+
     getLists({ commit, dispatch }, boardId) {
-      // api.get('boards/' + boardId + 'lists/')
-      api.get('lists/')
+       api.get('boards/' + boardId + '/lists')
+      //api.get('lists/')
         .then(res => {
           commit('setLists', res.data)
         })
@@ -82,9 +85,20 @@ export default new Vuex.Store({
     addList({ commit, dispatch }, listData) {
       api.post('lists/', listData)
         .then(serverBoard => {
-          dispatch('getLists')
+          dispatch('getLists',listData.boardId)
         })
     },
+
+    //deleteList
+    deleteList({ commit, dispatch }, listData) {
+      api.delete('lists/' + listData.id)
+        .then(serverBoard => {
+          dispatch('getLists', listData.boardId)
+        })
+    },
+
+
+
     //#endregion
 
 
