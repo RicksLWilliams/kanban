@@ -2,10 +2,12 @@
   <div class="board">
     <h1 v-if="board.title">{{board.title}}</h1>
     <h1 v-else>Loading...</h1>
+    <add-list></add-list>
   </div>
 </template>
 
 <script>
+import AddList from "../components/AddList.vue";
 export default {
   name: "board",
   computed: {
@@ -14,6 +16,7 @@ export default {
       return this.$store.state.activeBoard;
     }
   },
-  props: ["boardId"]
+  props: ["boardId"],
+  components:{AddList}
 };
 </script>
