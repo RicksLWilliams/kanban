@@ -18,7 +18,8 @@ export default new Vuex.Store({
   state: {
     user: {},
     boards: [],
-    activeBoard: {}
+    activeBoard: {},
+    lists: []
   },
   mutations: {
     setUser(state, user) {
@@ -26,6 +27,9 @@ export default new Vuex.Store({
     },
     setBoards(state, boards) {
       state.boards = boards
+    },
+    setLists(state, lists) {
+      state.lists = lists
     }
   },
   actions: {
@@ -61,12 +65,26 @@ export default new Vuex.Store({
         })
     },
 
-    deleteBoard({ commit, dispatch }, boardId){
-      api.delete('boards/'+ boardId)
-      .then(serverBoard => {
-        dispatch('getBoards')
-      })
-    }
+    deleteBoard({ commit, dispatch }, boardId) {
+      api.delete('boards/' + boardId)
+        .then(serverBoard => {
+          dispatch('getBoards')
+        })
+    },
+    getLists({ commit, dispatch }, boardId) {
+      // api.get('boards/' + boardId + 'lists/')
+      api.get('lists/')
+        .then(res => {
+          commit('setLists', res.data)
+        })
+    },
+    // FIXME dispatch get list requires boardId
+    addList({ commit, dispatch }, listData) {
+      api.post('lists/', listData)
+        .then(serverBoard => {
+          dispatch('getLists')
+        })
+    },
     //#endregion
 
 
