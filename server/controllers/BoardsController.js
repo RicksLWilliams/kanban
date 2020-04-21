@@ -13,6 +13,7 @@ export class BoardsController extends BaseController {
       .use(auth0provider.getAuthorizedUserInfo)
       .get('', this.getAll)
       .get('/:id', this.getById)
+      .get('/:id/lists', this.getBoardListsByBoardId)
       .post('', this.create)
       .put('/:id', this.edit)
       .delete('/:id', this.delete)
@@ -34,6 +35,15 @@ export class BoardsController extends BaseController {
       return res.send(data)
     } catch (error) { next(error) }
   }
+
+  //getBoardListsByBoardId
+  async getBoardListsByBoardId(req, res, next) {
+    try {
+      let data = await boardService.getBoardListsByBoardId(req.params.id, req.userInfo.email)
+      return res.send(data)
+    } catch (error) { next(error) }
+  }
+
 
   async create(req, res, next) {
     try {
