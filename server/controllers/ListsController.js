@@ -13,6 +13,7 @@ export class ListsController extends BaseController {
       .use(auth0provider.getAuthorizedUserInfo)
       .get('', this.getAll)
       .get('/:id', this.getById)
+      .get('/:id/tasks', this.getListsTaskByListId)
       .post('', this.create)
       .put('/:id', this.edit)
       .delete('/:id', this.delete)
@@ -30,6 +31,14 @@ export class ListsController extends BaseController {
   async getById(req, res, next) {
     try {
       let data = await listService.getById(req.params.id, req.userInfo.email)
+      return res.send(data)
+    } catch (error) { next(error) }
+  }
+
+  
+  async getListsTaskByListId(req, res, next) {
+    try {
+      let data = await listService.getListsTaskByListId(req.params.id, req.userInfo.email)
       return res.send(data)
     } catch (error) { next(error) }
   }

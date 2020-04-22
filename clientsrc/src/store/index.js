@@ -19,7 +19,10 @@ export default new Vuex.Store({
     user: {},
     boards: [],
     activeBoard: {},
-    lists: []
+    lists: [],
+    tasks:{
+      listOneId: ["tasks"]
+    }
   },
   mutations: {
     setUser(state, user) {
@@ -96,6 +99,30 @@ export default new Vuex.Store({
           dispatch('getLists', listData.boardId)
         })
     },
+
+    getTasks({ commit, dispatch }, listId) {
+      //api.get('lists/' + listId + '/tasks')
+      api.get('tasks/')
+     //api.get('lists/')
+       .then(res => {
+         commit('setTasks', res.data)
+       })
+   },
+   // FIXME dispatch get list requires boardId
+  //  addTask({ commit, dispatch }, listData) {
+  //    api.post('lists/', listData)
+  //      .then(serverBoard => {
+  //        dispatch('getLists',listData.boardId)
+  //      })
+  //  },
+
+   //deleteList
+  //  deleteTask({ commit, dispatch }, listData) {
+  //    api.delete('lists/' + listData.id)
+  //      .then(serverBoard => {
+  //        dispatch('getLists', listData.boardId)
+  //      })
+  //  },
 
 
 

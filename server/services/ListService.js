@@ -21,6 +21,15 @@ class ListService {
     
   }
 
+  //getListsTaskByListId
+  async getListsTaskByListId(listId, userEmail) {
+    let data = await dbContext.Tasks.find({ listId: listId, creatorEmail: userEmail })
+    if (!data) {
+      throw new BadRequest("Invalid ID or you do not own this list")
+    }
+    return data
+  }
+
   async create(rawData) {
     //let data = await dbContext.Lists.create(rawData)
     //return data
