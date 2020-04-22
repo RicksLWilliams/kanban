@@ -20,9 +20,10 @@ export default new Vuex.Store({
     boards: [],
     activeBoard: {},
     lists: [],
-    tasks:{
+    tasks: {
       //listOneId: ["tasks"]
-    }
+    },
+    comments: {}
   },
   mutations: {
     setUser(state, user) {
@@ -34,10 +35,12 @@ export default new Vuex.Store({
     setLists(state, lists) {
       state.lists = lists
     },
-    setTasks (state, tasks) {
+    setTasks(state, tasks) {
       Vue.set(state.tasks, tasks.listId, tasks.taskList)
       // need some help here
-
+    },
+    setComments(state, comments) {
+      Vue.set(state.comments, comments.taskId, comments.commentList)
     }
   },
   actions: {
@@ -80,11 +83,11 @@ export default new Vuex.Store({
         })
     },
 
-  
+
 
     getLists({ commit, dispatch }, boardId) {
-       api.get('boards/' + boardId + '/lists')
-      //api.get('lists/')
+      api.get('boards/' + boardId + '/lists')
+        //api.get('lists/')
         .then(res => {
           commit('setLists', res.data)
         })
@@ -93,7 +96,7 @@ export default new Vuex.Store({
     addList({ commit, dispatch }, listData) {
       api.post('lists/', listData)
         .then(serverBoard => {
-          dispatch('getLists',listData.boardId)
+          dispatch('getLists', listData.boardId)
         })
     },
 
@@ -107,19 +110,19 @@ export default new Vuex.Store({
 
     getTasks({ commit, dispatch }, listId) {
       api.get('lists/' + listId + '/tasks')
-       .then(res => {
-         let tasks = {
-          listId :listId,
-          taskList : res.data
-         }
-         commit('setTasks', tasks)
-       })
-   },
-   // FIXME dispatch get list requires boardId
+        .then(res => {
+          let tasks = {
+            listId: listId,
+            taskList: res.data
+          }
+          commit('setTasks', tasks)
+        })
+    },
+    // FIXME dispatch get list requires boardId
     addTask({ commit, dispatch }, taskData) {
       api.post('tasks/', taskData)
         .then(serverBoard => {
-          dispatch('getTasks',taskData.listId)
+          dispatch('getTasks', taskData.listId)
         })
     },
 
@@ -131,16 +134,41 @@ export default new Vuex.Store({
     },
 
     moveTask({ commit, dispatch }, data) {
-      let taskData ={
-        listId:data.newListId
+      let taskData = {
+        listId: data.newListId
       }
 
-      api.put('tasks/' + data.taskId, taskData )
+      api.put('tasks/' + data.taskId, taskData)
         .then(serverBoard => {
           dispatch('getTasks', data.oldListId)
           dispatch('getTasks', data.newListId)
         })
-        console.log("moveTask - end", taskData)
+      console.log("moveTask - end", taskData)
+    },
+
+    getComments({ commit, dispatch }, taskId) {
+      api.get('tasks/' + taskId + '/comments')
+        .then(res => {
+          let comments = {
+            taskId: taskId,
+            commentList: res.data
+          }
+          commit('setComments', comments)
+        })
+    },
+    // FIXME dispatch get list requires boardId
+    addComment({ commit, dispatch }, commentData) {
+      api.post('comments/', commentData)
+        .then(serverBoard => {
+          dispatch('getComments', commentData.taskId)
+        })
+    },
+
+    deleteComment({ commit, dispatch }, commentData) {
+      api.delete('comments/' + commentData.id)
+        .then(serverBoard => {
+          dispatch('getComments', commentData.taskId)
+        })
     },
 
 

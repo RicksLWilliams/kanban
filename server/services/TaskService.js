@@ -7,13 +7,16 @@ class TaskService {
     return await dbContext.Tasks.find({ creatorEmail: userEmail }).populate("creator", "name picture")
   }
 
-  async getById(id,userEmail) {
+  async getById(id, userEmail) {
     let data = await dbContext.Tasks.findOne({ _id: id, creatorEmail: userEmail })
     if (!data) {
       throw new BadRequest("Invalid ID or you do not own this task")
     }
     return data
-    
+
+  }
+  async getTaskCommentsByTaskId(taskId, userEmail) {
+    return await dbContext.Comments.find({ taskId: taskId, creatorEmail: userEmail }).populate("creator", "name picture")
   }
 
   async create(rawData) {

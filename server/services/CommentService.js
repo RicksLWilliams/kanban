@@ -7,13 +7,13 @@ class CommentService {
     return await dbContext.Comments.find({ creatorEmail: userEmail }).populate("creator", "name picture")
   }
 
-  async getById(id,userEmail) {
+  async getById(id, userEmail) {
     let data = await dbContext.Comments.findOne({ _id: id, creatorEmail: userEmail })
     if (!data) {
       throw new BadRequest("Invalid ID or you do not own this comment")
     }
     return data
-    
+
   }
 
   async create(rawData) {
