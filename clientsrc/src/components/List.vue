@@ -30,6 +30,9 @@ export default {
       this.$store.dispatch("deleteList", this.listData);
     }
   },
+  mounted() {
+    this.$store.dispatch("getTasks", this.listData.id);
+  },
   components: { Task, AddTask }
 };
 </script>

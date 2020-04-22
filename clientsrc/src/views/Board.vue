@@ -24,8 +24,8 @@ export default {
     }
   },
   mounted() {
-    this.$store.dispatch("getLists", this.$route.params.boardId);
     this.$store.dispatch("getActiveBoard", this.$route.params.boardId);
+    this.$store.dispatch("getLists", this.$route.params.boardId);
   },
   props: ["boardId"],
   components: { AddList, List }
