@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div class="col-4">
     <!-- <h1>I am a list</h1> -->
     <h3>{{listData.title}}</h3>
-    <button @click="deleteList(listData.id)">delete </button>
+    <button @click="deleteList(listData.id)">delete</button>
   </div>
 </template>
 
@@ -13,16 +13,15 @@ export default {
   data() {
     return {};
   },
-  methods:{
-    deleteList(listId){
+  methods: {
+    deleteList(listId) {
       //console.log("deleteBoard", this.boards[0].id)
       //console.log("deleteBoard", this.$router)
       //console.log ("deleteBoard1", this.$route.params.boardId)
 
       //console.log("deleteList", this.$route.params.boardId )
       //let boardId = this.$route.params.boardId
-      this.$store.dispatch("deleteList",  this.listData  )
-
+      this.$store.dispatch("deleteList", this.listData);
     }
   }
 };

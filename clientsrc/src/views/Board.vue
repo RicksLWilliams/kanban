@@ -3,7 +3,9 @@
     <h1 v-if="board.title">{{board.title}}</h1>
     <h1 v-else>Loading...</h1>
     <add-list></add-list>
-    <list :listData="listInfo" v-for="listInfo in listItems" :key="listInfo.id"></list>
+    <div class="row">
+      <list :listData="listInfo" v-for="listInfo in listItems" :key="listInfo.id"></list>
+    </div>
   </div>
 </template>
 
