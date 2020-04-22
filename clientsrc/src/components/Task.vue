@@ -4,19 +4,10 @@
     <h3 class="text-primary">{{taskData.title}}</h3>
     <button class="btn btn-warning" @click="deleteTask(taskData.id)">delete task</button>
 
-    <div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Dropdown button
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="#">Action</a>
-    <a class="dropdown-item" href="#">Another action</a>
-    <a class="dropdown-item" href="#">Something else here</a>
-    <div v-for="listInfo in listItems"  :key="listInfo.id">
-        <a class="dropdown-item" href="#">{{listInfo.title}}</a>
-    </div>
-  </div>
-</div>
+      <select v-model="selected" @change="moveTask()">
+        <option disabled value>Please select one</option>
+        <option v-for="listInfo in listItems" :key="listInfo.id" :value ="listInfo.id" >{{listInfo.title}}</option>
+      </select>
 
   </div>
 </template>
@@ -26,24 +17,31 @@ export default {
   name: "Task",
   props: ["taskData"],
   data() {
-    return {};
+    return {selected:""};
   },
-   computed: {
-     listItems() {
-       console.log("listItems",this.$store.state.lists )
-       return this.$store.state.lists;
-     }
-   },
+  computed: {
+    listItems() {
+      //console.log("listItems",this.$store.state.lists )
+      return this.$store.state.lists;
+    }
+  },
   methods: {
-    deleteTask(taskId){
+    deleteTask(taskId) {
       //let listId = this.$route.params.boardId
       //this.$store.dispatch("deleteTask", taskId);
 
       this.$store.dispatch("deleteTask", this.taskData);
+    },
+    moveTask() {
+      console.log("moveTask" , this.selected);
+      let moveData = {
+        taskId:this.taskData.id,
+        oldListId:this.taskData.listId,
+        newListId:this.selected
+      }
+      this.$store.dispatch("moveTask", moveData);
     }
-
-  },
-  
+  }
 };
 </script>
 

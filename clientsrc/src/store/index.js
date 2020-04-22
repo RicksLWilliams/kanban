@@ -130,6 +130,19 @@ export default new Vuex.Store({
         })
     },
 
+    moveTask({ commit, dispatch }, data) {
+      let taskData ={
+        listId:data.newListId
+      }
+
+      api.put('tasks/' + data.taskId, taskData )
+        .then(serverBoard => {
+          dispatch('getTasks', data.oldListId)
+          dispatch('getTasks', data.newListId)
+        })
+        console.log("moveTask - end", taskData)
+    },
+
 
 
     //#endregion
