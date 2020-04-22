@@ -32,6 +32,9 @@ export default new Vuex.Store({
     setBoards(state, boards) {
       state.boards = boards
     },
+    setActiveBoard(state, activeBoard) {
+      state.activeBoard = activeBoard
+    },
     setLists(state, lists) {
       state.lists = lists
     },
@@ -67,6 +70,12 @@ export default new Vuex.Store({
       api.get('boards')
         .then(res => {
           commit('setBoards', res.data)
+        })
+    },
+    getActiveBoard({ commit, dispatch }, boardId) {
+      api.get('boards/' + boardId)
+        .then(res => {
+          commit('setActiveBoard', res.data)
         })
     },
     addBoard({ commit, dispatch }, boardData) {

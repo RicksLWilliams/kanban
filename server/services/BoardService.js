@@ -8,7 +8,7 @@ class BoardService {
   }
 
   async getById(id, userEmail) {
-    let data = await dbContext.Boards.findOne({ _id: id, creatorEmail: userEmail })
+    let data = await dbContext.Boards.findById({ _id: id, creatorEmail: userEmail })
     if (!data) {
       throw new BadRequest("Invalid ID or you do not own this board")
     }

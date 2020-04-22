@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1>hello world</h1>
     <form @submit.prevent="addList">
       <input type="text" placeholder="title" v-model="newList.title" required />
       <button type="submit">Create List</button>
