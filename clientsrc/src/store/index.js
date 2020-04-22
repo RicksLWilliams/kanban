@@ -21,7 +21,7 @@ export default new Vuex.Store({
     activeBoard: {},
     lists: [],
     tasks:{
-      listOneId: ["tasks"]
+      //listOneId: ["tasks"]
     }
   },
   mutations: {
@@ -33,6 +33,11 @@ export default new Vuex.Store({
     },
     setLists(state, lists) {
       state.lists = lists
+    },
+    setTasks (state, tasks) {
+      Vue.set(state.tasks, tasks.listId, tasks.taskList)
+      // need some help here
+
     }
   },
   actions: {
@@ -101,28 +106,29 @@ export default new Vuex.Store({
     },
 
     getTasks({ commit, dispatch }, listId) {
-      //api.get('lists/' + listId + '/tasks')
-      api.get('tasks/')
-     //api.get('lists/')
+      api.get('lists/' + listId + '/tasks')
        .then(res => {
-         commit('setTasks', res.data)
+         let tasks = {
+          listId :listId,
+          taskList : res.data
+         }
+         commit('setTasks', tasks)
        })
    },
    // FIXME dispatch get list requires boardId
-  //  addTask({ commit, dispatch }, listData) {
-  //    api.post('lists/', listData)
-  //      .then(serverBoard => {
-  //        dispatch('getLists',listData.boardId)
-  //      })
-  //  },
+    addTask({ commit, dispatch }, taskData) {
+      api.post('tasks/', taskData)
+        .then(serverBoard => {
+          dispatch('getTasks',taskData.listId)
+        })
+    },
 
-   //deleteList
-  //  deleteTask({ commit, dispatch }, listData) {
-  //    api.delete('lists/' + listData.id)
-  //      .then(serverBoard => {
-  //        dispatch('getLists', listData.boardId)
-  //      })
-  //  },
+    deleteTask({ commit, dispatch }, taskData) {
+      api.delete('tasks/' + taskData.id)
+        .then(serverBoard => {
+          dispatch('getTasks', taskData.listId)
+        })
+    },
 
 
 

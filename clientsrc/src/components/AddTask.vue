@@ -1,9 +1,9 @@
 <template>
   <div>
-    <h1>hello world</h1>
-    <form @submit.prevent="addList">
-      <input type="text" placeholder="title" v-model="newList.title" required />
-      <button type="submit">Create List</button>
+    <h1>Add Task</h1>
+    <form @submit.prevent="addTask">
+      <input type="text" placeholder="title" v-model="newTask.title" required />
+      <button type="submit">Create Task</button>
     </form>
     <!-- <div v-for="list in board" :key="list.id">
       <router-link :to="{name: 'board', params: {boardId: board.id}}">{{board.title}}</router-link>
@@ -14,6 +14,7 @@
 <script>
 export default {
   name: "AddTask",
+  props: ["listData"],
   data() {
     return {
       newTask: {}
@@ -21,9 +22,10 @@ export default {
   },
   methods: {
     addTask() {
-      this.newTask.listId = this.$route.params.listId;
+      //console.log("addTask", this.listData.id)
+      this.newTask.listId = this.listData.id;
       this.$store.dispatch("addTask", this.newTask);
-      this.newTask = { };
+      this.newTask = { title: ""};
     }
   }
 };
