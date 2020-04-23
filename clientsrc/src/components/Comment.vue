@@ -1,8 +1,14 @@
 <template>
-  <div class="col-4">
+  <div class="mt-2">
     <!-- <h5 class="text-danger">Comment</h5> -->
-    <h3 class="text-danger">{{commentData.title}}</h3>
-    <button class="btn btn-warning" @click="deleteComment(commentData.id)">X</button>
+    <div class="row">
+      <p class="col-10 mt-2 cmtTitle">♥ {{commentData.title}}</p>
+      <div class="col-2">
+        <button class="btn btn-process" @click="deleteComment(commentData.id)">
+          <h5 class="text-danger">X</h5>
+        </button>
+      </div>
+    </div>
 
     <!-- <select v-model="selected" @change="moveTask()">
         <option disabled value>Please select one</option>
@@ -45,4 +51,9 @@ export default {
 </script>
 
 <style>
+.cmtTitle {
+  font-family: Lucida Handwriting;
+  font-size: 12px;
+  color: rgb(13, 143, 1);
+}
 </style>

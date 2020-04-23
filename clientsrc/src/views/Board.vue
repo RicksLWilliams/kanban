@@ -1,9 +1,9 @@
 <template>
-  <div class="board">
-    <h1 v-if="board.title">{{board.title}}</h1>
-    <h1 v-else></h1>
-    <add-list></add-list>
-    <div class="row">
+  <div class="board container-fluid">
+    <h1 class="title pt-5 text-light" v-if="board.title">{{board.title}}</h1>
+    <!-- <h1 v-else></h1> -->
+    <add-list class="m-2"></add-list>
+    <div class="row m-2">
       <list :listData="listInfo" v-for="listInfo in listItems" :key="listInfo.id"></list>
     </div>
   </div>
@@ -31,3 +31,8 @@ export default {
   components: { AddList, List }
 };
 </script>
+<style>
+.board {
+  background-image: url(https://aedcweb.com/wp-content/uploads/2018/02/cork-board-background.png);
+}
+</style>

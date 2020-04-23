@@ -1,19 +1,36 @@
 <template>
-  <div class="col-4">
+  <div class="col-12 border mt-0 task">
     <!-- <h1 class="text-primary">I am a list</h1> -->
-    <h3 class="text-primary">{{taskData.title}}</h3>
-    <button class="btn btn-warning" @click="deleteTask(taskData.id)">delete task</button>
+    <div class="row">
+      <h3 class="text-primary text-left tskTitle col-10">• {{taskData.title}}</h3>
+      <div class="col-2">
+        <button class="btn btn-process" @click="deleteTask(taskData.id)">
+          <h5 class="text-danger">X</h5>
+        </button>
+      </div>
+    </div>
+    <div class="row pl-2">
+      <select class="select" v-model="selected" @change="moveTask()">
+        <option disabled value>
+          <h3 class="edit">M♥VE</h3>
+        </option>
+        <option
+          v-for="listInfo in listItems"
+          :key="listInfo.id"
+          :value="listInfo.id"
+        >{{listInfo.title}}</option>
+      </select>
+      <add-comment v-bind:taskData="taskData"></add-comment>
 
-    <select v-model="selected" @change="moveTask()">
-      <option disabled value>Please select one</option>
-      <option
-        v-for="listInfo in listItems"
-        :key="listInfo.id"
-        :value="listInfo.id"
-      >{{listInfo.title}}</option>
-    </select>
-    <add-comment v-bind:taskData="taskData"></add-comment>
-    <comment v-for="commentInfo in commentItems" :commentData="commentInfo" :key="commentInfo.id"></comment>
+      <div class="col-12 pb-1 text-left">
+        <comment
+          v-for="commentInfo in commentItems"
+          :commentData="commentInfo"
+          :key="commentInfo.id"
+        ></comment>
+      </div>
+    </div>
+
     <!-- <add-comment></add-comment> -->
   </div>
 </template>
@@ -64,4 +81,20 @@ export default {
 </script>
 
 <style>
+.tskTitle {
+  padding-right: 120px;
+  font-family: Bradley Hand ITC;
+  font-weight: 900;
+}
+.select {
+  background-color: rgb(142, 230, 200);
+  border-radius: 12px;
+  padding-left: 15px;
+  height: 25px;
+}
+.task {
+  background-color: rgb(248, 248, 185);
+  max-height: 300px;
+  box-shadow: 2px 0px 10px 2px rgb(5, 5, 5);
+}
 </style>

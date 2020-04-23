@@ -1,14 +1,18 @@
 <template>
-  <div class="col-4">
+  <div class="col-3 m-5 list">
     <!-- <h1>I am a list</h1> -->
-    <h3>{{listData.title}}</h3>
-    <button @click="deleteList(listData.id)">delete list</button>
-    <add-task v-bind:listData="listData"> </add-task>
+    <div class="row">
+      <h3 class="listTitle pt-1 col-6">{{listData.title}}:</h3>
+      <div class="col-6 dltList">
+        <button class="btn pb-0" @click="deleteList(listData.id)">
+          <h4 class="text-danger">X</h4>
+        </button>
+      </div>
+    </div>
+    <add-task v-bind:listData="listData"></add-task>
     <!-- <task></task> -->
     <task v-for="taskInfo in taskItems" :taskData="taskInfo" :key="taskInfo.id"></task>
   </div>
-
-
 </template>
 
 <script>
@@ -38,4 +42,20 @@ export default {
 </script>
 
 <style>
+.list {
+  height: 340px;
+  max-height: 340px;
+  border: rgb(253, 253, 192) 2px solid;
+  background-color: rgb(253, 253, 192);
+  box-shadow: 3px 0px 15px 5px rgb(5, 5, 5);
+}
+.listTitle {
+  padding-right: 100px;
+  font-family: Bradley Hand ITC;
+  font-weight: bolder;
+  font-size: 35px;
+}
+.dltList {
+  padding-left: 130px;
+}
 </style>
