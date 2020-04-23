@@ -1,8 +1,11 @@
 <template>
   <div class="board row">
-    <h1 class="header title pt-5 text-light col-12" v-if="board.title">{{board.title}}</h1>
+    <h1
+      class="header title pt-5 pb-0 mb-0 mt-0 text-light col-12"
+      v-if="board.title"
+    >{{board.title}}</h1>
     <!-- <h1 v-else></h1> -->
-    <add-list class="col-12 mt-4"></add-list>
+    <add-list class="col-12"></add-list>
     <div class="row m-2">
       <list :listData="listInfo" v-for="listInfo in listItems" :key="listInfo.id"></list>
     </div>
@@ -40,6 +43,8 @@ export default {
 }
 
 .header {
-  text-shadow: 2px 2px 5px black;
+  text-shadow: 2px 2px 15px black;
+  font-size: 60px;
+  font-family: monospace;
 }
 </style>
