@@ -1,9 +1,10 @@
 <template>
   <div class="cork row justify-content-center">
     <div class="home mt-5 text-primary">
-      <p class>• POST IT</p>
-      <p class="about">♥ where you ideas stick</p>
-      <p class="by mt-5">By: Eva and Ricks</p>
+      <h1 class="text-right pr-3 text-danger m-0">X</h1>
+      <p class="text-left pl-3">• POST IT</p>
+      <p class="about pt-2">♥ where everthing sticks</p>
+      <p class="by">By: Eva and Ricks</p>
     </div>
   </div>
 </template>
@@ -37,12 +38,13 @@ export default {
   font-family: Bradley Hand ITC;
   font-weight: bolder;
   font-size: 80px;
-  padding-top: 90px;
+  z-index: 1;
+  /* padding-top: 40px; */
 }
 .by {
   font-family: Bradley Hand ITC;
-  padding-top: 50px;
-  font-size: 30px;
+  padding-top: 150px;
+  font-size: 25px;
 }
 .about {
   font-weight: bolder;

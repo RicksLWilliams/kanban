@@ -9,7 +9,7 @@
         </button>
       </div>
     </div>
-    <div class="row pl-2">
+    <div class="row pl-1">
       <select class="select" v-model="selected" @change="moveTask()">
         <option disabled value>
           <h3 class="edit">M♥VE</h3>
@@ -22,7 +22,7 @@
       </select>
       <add-comment v-bind:taskData="taskData"></add-comment>
 
-      <div class="col-12 pb-1 text-left">
+      <div class="col-12 pb-1 text-left comcom">
         <comment
           v-for="commentInfo in commentItems"
           :commentData="commentInfo"
@@ -96,5 +96,15 @@ export default {
   background-color: rgb(248, 248, 185);
   max-height: 300px;
   box-shadow: 2px 0px 10px 2px rgb(5, 5, 5);
+}
+.comcom {
+  max-height: 150px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  background: rgb(248, 241, 144); /* make scrollbar transparent */
 }
 </style>

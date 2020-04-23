@@ -48,6 +48,7 @@ export default {
   border: rgb(253, 253, 192) 2px solid;
   background-color: rgb(253, 253, 192);
   box-shadow: 3px 0px 15px 5px rgb(5, 5, 5);
+  overflow-y: scroll;
 }
 .listTitle {
   padding-right: 100px;

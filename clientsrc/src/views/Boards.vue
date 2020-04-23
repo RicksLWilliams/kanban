@@ -77,7 +77,7 @@ export default {
   background-color: rgb(253, 253, 192);
   box-shadow: 3px 0px 15px 2px rgb(5, 5, 5);
   height: 200px;
-  width: 200px;
+  width: 220px;
 }
 
 .front-board {
@@ -89,6 +89,7 @@ export default {
 .cork {
   background-image: url(https://aedcweb.com/wp-content/uploads/2018/02/cork-board-background.png);
   background-size: cover;
+  height: 85vh;
 }
 
 .input-front {

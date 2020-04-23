@@ -35,9 +35,10 @@ export default {
 .board {
   background-image: url(https://aedcweb.com/wp-content/uploads/2018/02/cork-board-background.png);
   background-size: cover;
+  height: 85vh;
 }
 
-.header{
+.header {
   text-shadow: 2px 2px 5px black;
 }
 </style>
