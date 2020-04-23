@@ -34,5 +34,6 @@ export default {
 <style>
 .board {
   background-image: url(https://aedcweb.com/wp-content/uploads/2018/02/cork-board-background.png);
+  background-size: cover;
 }
 </style>
