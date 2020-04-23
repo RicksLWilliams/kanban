@@ -45,6 +45,7 @@ export default {
   font-family: Bradley Hand ITC;
   padding-top: 150px;
   font-size: 25px;
+  color: rgb(14, 15, 14);
 }
 .about {
   font-weight: bolder;

@@ -48,7 +48,8 @@ export default {
   min-width: 380px;
   border: rgb(253, 253, 192) 2px solid;
   background-color: rgb(253, 253, 192);
-  box-shadow: 3px 0px 15px 5px rgb(5, 5, 5);
+  /* filter: drop-shadow(8px 8px 20px); */
+  box-shadow: 3px 0px 15px 5px rgba(5, 5, 5, 0.664);
   overflow-y: scroll;
 }
 .listTitle {

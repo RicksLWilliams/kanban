@@ -1,6 +1,6 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-secondary">
-    <router-link class="navbar-brand postit" :to="{ name: 'home' }">P♥ST IT</router-link>
+    <router-link class="navbar-brand postit text-light" :to="{ name: 'home' }">P♥ST IT</router-link>
     <button
       class="navbar-toggler"
       type="button"
@@ -15,14 +15,14 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item" :class="{ active: $route.name == 'home' }">
-          <router-link :to="{ name: 'home' }" class="nav-link text-dark">Home</router-link>
+          <router-link :to="{ name: 'home' }" class="nav-link text-warning nav">Home</router-link>
         </li>
         <li
           class="nav-item"
           v-if="$auth.isAuthenticated"
           :class="{ active: $route.name == 'boards' }"
         >
-          <router-link class="nav-link text-dark" :to="{ name: 'boards' }">My-Dashboard</router-link>
+          <router-link class="nav-link text-warning nav" :to="{ name: 'boards' }">My-Dashboard</router-link>
         </li>
       </ul>
       <span class="navbar-text">
@@ -52,7 +52,7 @@ export default {
     },
     async logout() {
       this.$store.dispatch("resetBearer");
-      await this.$auth.logout(window.location.origin);
+      await this.$auth.logout({ returnTo: window.location.origin });
     }
   }
 };
@@ -60,9 +60,12 @@ export default {
 
 <style>
 .postit {
-  text-shadow: 0px 0px 3px rgb(7, 155, 123);
+  text-shadow: 0px 0px 10px rgb(2, 15, 12);
   font-family: Bradley Hand ITC;
   font-weight: bolder;
   font-size: 30px;
+}
+.nav {
+  text-shadow: 0px 0px 10px rgb(2, 15, 12);
 }
 </style>

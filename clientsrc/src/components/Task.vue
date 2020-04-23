@@ -1,5 +1,5 @@
 <template>
-  <div class="col-12 border mt-0 task">
+  <div class="col-12 border mt-3 task">
     <!-- <h1 class="text-primary">I am a list</h1> -->
     <div class="row">
       <h3 class="text-primary text-left tskTitle col-10">• {{taskData.title}}</h3>
@@ -95,7 +95,8 @@ export default {
 .task {
   background-color: rgb(248, 248, 185);
   max-height: 300px;
-  box-shadow: 2px 0px 10px 2px rgb(5, 5, 5);
+  filter: drop-shadow(2px 2px 5px);
+  /* box-shadow: 2px 0px 10px 2px rgb(5, 5, 5); */
 }
 .comcom {
   max-height: 150px;
