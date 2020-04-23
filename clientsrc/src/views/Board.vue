@@ -1,8 +1,8 @@
 <template>
-  <div class="board container-fluid">
-    <h1 class="header title pt-5 text-light" v-if="board.title">{{board.title}}</h1>
+  <div class="board row">
+    <h1 class="header title pt-5 text-light col-12" v-if="board.title">{{board.title}}</h1>
     <!-- <h1 v-else></h1> -->
-    <add-list class="m-2"></add-list>
+    <add-list class="col-12 mt-4"></add-list>
     <div class="row m-2">
       <list :listData="listInfo" v-for="listInfo in listItems" :key="listInfo.id"></list>
     </div>
@@ -35,7 +35,8 @@ export default {
 .board {
   background-image: url(https://aedcweb.com/wp-content/uploads/2018/02/cork-board-background.png);
   background-size: cover;
-  height: 85vh;
+  min-height: 85vh;
+  border: 5px solid rgb(12, 83, 75);
 }
 
 .header {

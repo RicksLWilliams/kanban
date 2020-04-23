@@ -89,7 +89,8 @@ export default {
 .cork {
   background-image: url(https://aedcweb.com/wp-content/uploads/2018/02/cork-board-background.png);
   background-size: cover;
-  height: 85vh;
+  min-height: 85vh;
+  border: 5px solid rgb(12, 83, 75);
 }
 
 .input-front {
