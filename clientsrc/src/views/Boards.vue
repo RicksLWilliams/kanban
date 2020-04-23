@@ -1,25 +1,34 @@
 <template>
-  <div class="cork boards container-fluid row">
-    <h1 class="col-12 text-light mt-5 header">WELCOME TO THE BOARDS!!!</h1>
+  <div class="cork boards row">
+    <h1 class="col-12 text-light mt-5 header">STICK IT HERE!</h1>
     <form class="col-12" @submit.prevent="addBoard">
-      <input class="input-front" type="text" placeholder=" add board..." v-model="newBoard.title" required />
-      <input class="input-front" type="text" placeholder=" description..." v-model="newBoard.description" />
+      <input
+        class="input-front"
+        type="text"
+        placeholder=" add board..."
+        v-model="newBoard.title"
+        required
+      />
+      <input
+        class="input-front"
+        type="text"
+        placeholder=" description..."
+        v-model="newBoard.description"
+      />
       <button class="btn btn-secondary border-dark" type="submit">+</button>
     </form>
     <div class="row m-5 justify-content-center">
       <div class="boards-front m-5" v-for="board in boards" :key="board.id">
-        
         <div class="col-12 text-right ml-3">
           <button class="btn pb-0" @click="deleteBoard(board.id)">
             <h4 class="text-danger">X</h4>
           </button>
         </div>
-        
+
         <router-link
           class="col-5 front-board"
           :to="{name: 'board', params: {boardId: board.id}}"
-        >{{board.title}}
-        </router-link>
+        >{{board.title}}</router-link>
       </div>
     </div>
   </div>
@@ -71,23 +80,23 @@ export default {
   width: 200px;
 }
 
-.front-board{
+.front-board {
   font-family: Bradley Hand ITC;
   font-weight: bolder;
   font-size: 35px;
 }
 
-.cork{
+.cork {
   background-image: url(https://aedcweb.com/wp-content/uploads/2018/02/cork-board-background.png);
   background-size: cover;
 }
 
-.input-front{
+.input-front {
   border-radius: 12px;
   border: 2px solid blue;
 }
 
-.header{
+.header {
   text-shadow: 2px 2px 5px black;
 }
 </style>
