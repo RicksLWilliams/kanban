@@ -1,6 +1,6 @@
 <template>
   <div class="board container-fluid">
-    <h1 class="title pt-5 text-light" v-if="board.title">{{board.title}}</h1>
+    <h1 class="header title pt-5 text-light" v-if="board.title">{{board.title}}</h1>
     <!-- <h1 v-else></h1> -->
     <add-list class="m-2"></add-list>
     <div class="row m-2">
@@ -35,5 +35,9 @@ export default {
 .board {
   background-image: url(https://aedcweb.com/wp-content/uploads/2018/02/cork-board-background.png);
   background-size: cover;
+}
+
+.header{
+  text-shadow: 2px 2px 5px black;
 }
 </style>

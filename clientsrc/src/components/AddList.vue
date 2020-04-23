@@ -1,7 +1,7 @@
 <template>
   <div>
     <form @submit.prevent="addList">
-      <input class="pl-1" type="text" placeholder="add list..." v-model="newList.title" required />
+      <input class="input-front pl-1" type="text" placeholder="add list..." v-model="newList.title" required />
       <button class="btn btn-secondary border-dark" type="submit">+</button>
     </form>
     <!-- <div v-for="list in board" :key="list.id">
@@ -29,5 +29,9 @@ export default {
 </script>
   
   <style>
+  .input-front{
+  border-radius: 12px;
+  border: 2px solid blue;
+}
 </style>
 
